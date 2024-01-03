@@ -12,4 +12,8 @@
       <ProjectReference Include="..\Cafe.Infrustructure\Cafe.Infrustructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="DTOs\DishDTOs\Responce\" />
+    </ItemGroup>
+
 </Project>

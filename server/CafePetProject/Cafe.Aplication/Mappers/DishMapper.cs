@@ -15,6 +15,16 @@ public static class DishMapper
             ImageUrl = addDish.ImageUrl
         };
     }
-    
-    
+
+    public static Dish ToDishPutRequest(this PutDishRequest putDish)
+    {
+        return new Dish
+        {
+            DishId = putDish.DishId,
+            Title = putDish.Title,
+            Description = putDish.Description,
+            Price = putDish.Price,
+            ImageUrl = putDish.ImageUrl
+        };
+    }
 }

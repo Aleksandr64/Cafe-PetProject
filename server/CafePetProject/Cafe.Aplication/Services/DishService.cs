@@ -16,16 +16,6 @@ public class DishService : IDishService
     {
         _dishRepository = dishRepository;
     }
-    public Result<string> AddNewDish(AddDishRequest dish)
-    {
-        if (dish == null)
-        {
-            return new BadRequestResult<string>("Object Empty");
-        }
-
-        _dishRepository.AddNewDish(dish.ToDishAddRequest());
-        return new SuccessResult<string>(null);
-    }
 
     public async Task<Result<IEnumerable<Dish>>> GetAllDish()
     {
@@ -37,5 +27,49 @@ public class DishService : IDishService
         }
 
         return new SuccessResult<IEnumerable<Dish>>(result);
+    }
+    public async Task<Result<Dish>> GetDishById(int id)
+    {
+        var result = await _dishRepository.GetDishById(id);
+
+        if (result == null)
+        {
+            return new NotFoundResult<Dish>("Failed get Dish by Id");
+        }
+        
+        return new SuccessResult<Dish>(result);
+    }
+
+    public Result<string> AddNewDish(AddDishRequest dish)
+    {
+        if (dish == null)
+        {
+            return new BadRequestResult<string>("Object Empty");
+        }
+
+        _dishRepository.AddNewDish(dish.ToDishAddRequest());
+        return new SuccessResult<string>(null);
+    }
+
+    public async Task<Result<string>> ChangeDish(PutDishRequest dish)
+    {
+        if (dish == null)
+        {
+            return new BadRequestResult<string>("Object Empty");
+        }
+        await _dishRepository.ChangeDish(dish.ToDishPutRequest());
+        return new SuccessResult<string>(null);
+    }
+
+    public async Task<Result<string>> DeleteById(int id)
+    {
+        var result = await _dishRepository.DeleteDishById(id);
+
+        if (result)
+        {
+            return new BadRequestResult<string>("Error in delete dish.");
+        }
+        
+        return new SuccessResult<string>(null);
     }
 }

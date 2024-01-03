@@ -1,6 +1,6 @@
-﻿namespace ClassLibrary1.DTOs.DishDTOs.Responce;
+﻿namespace ClassLibrary1.DTOs.DishDTOs.Request;
 
-public class GetDishResponce
+public class PutDishRequest
 {
     public int DishId { get; set; }
     public string Title { get; set; }
