@@ -1,6 +1,17 @@
+using Cafe.Infrustructure.Context;
+using ClassLibrary1.Services;
+using ClassLibrary1.Services.Inteface;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<CafeDbContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("WebApiDatabase"));
+});
+
+builder.Services.AddScoped<IDishService, DishService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
