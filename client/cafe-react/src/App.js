@@ -1,24 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import DishMenu from "./components/DishMenu";
+import { Container, Grid } from "@mui/material";
+import Header from "./components/Header";
+import Dish from "./components/Dish";
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const [isMenuOpen, setMenuOpen] = React.useState(false);
+  const [records, setRecords] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5179/GetAllDish")
+      .then((response) => response.json())
+      .then((data) => setRecords(data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  console.log(records);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <Header handleCart={() => setMenuOpen(true)} />
+      <DishMenu menuOpen={isMenuOpen} closeMenu={() => setMenuOpen(false)} />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "100vh",
+          padding: "25px",
+        }}
+      >
+        <Container
+          sx={{
+            mr: "5%",
+            ml: "5%",
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Grid container spacing={3}>
+            {records.map((record) => (
+              <Dish
+                key={record.DishId} // Make sure to provide a unique key for each item in the array
+                title={record.title}
+                description={record.description}
+                price={record.price}
+                imageUrl={record.imageUrl}
+              />
+            ))}
+          </Grid>
+        </Container>
+      </div>
+    </>
   );
 }
 
