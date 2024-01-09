@@ -14,4 +14,6 @@ public class CafeDbContext : DbContext
     }
     
     public DbSet<Dish> Dishes { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderItem> OrderItems { get; set; }
 }
