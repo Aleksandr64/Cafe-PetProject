@@ -1,8 +1,8 @@
 using Cafe.Infrustructure.Context;
 using Cafe.Infrustructure.Repositoriy;
 using Cafe.Infrustructure.Repositoriy.Interface;
-using Cafe.Application.Services;
-using Cafe.Application.Services.Inteface;
+using ClassLibrary1.Services;
+using ClassLibrary1.Services.Inteface;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,9 +27,6 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddScoped<IDishService, DishService>();
 builder.Services.AddScoped<IDishRepository, DishRepository>();
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<IOrderService, OrderService>();
-builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -37,13 +34,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
-using (var scoped = app.Services.CreateScope())
-{
-    var services = scoped.ServiceProvider;
-    var context = services.GetRequiredService<CafeDbContext>();
-    context.Database.Migrate();
-}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

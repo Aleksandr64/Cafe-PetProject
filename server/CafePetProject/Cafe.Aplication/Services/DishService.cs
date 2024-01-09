@@ -1,12 +1,12 @@
 ﻿
-using Cafe.Application.DTOs.DishDTOs.Request;
-using Cafe.Application.Services.Inteface;
 using Cafe.Domain;
 using Cafe.Domain.ResultModels;
 using Cafe.Infrustructure.Repositoriy.Interface;
-using Cafe.Application.Mappers;
+using ClassLibrary1.DTOs.DishDTOs.Request;
+using ClassLibrary1.Mappers;
+using ClassLibrary1.Services.Inteface;
 
-namespace Cafe.Application.Services;
+namespace ClassLibrary1.Services;
 
 public class DishService : IDishService
 {
@@ -28,7 +28,7 @@ public class DishService : IDishService
 
         return new SuccessResult<IEnumerable<Dish>>(result);
     }
-    public async Task<Result<Dish>> GetDishById(Guid  id)
+    public async Task<Result<Dish>> GetDishById(int id)
     {
         var result = await _dishRepository.GetDishById(id);
 
@@ -47,7 +47,7 @@ public class DishService : IDishService
             return new BadRequestResult<string>("Object Empty");
         }
 
-        _dishRepository.AddNewDish(dish.MapDishAddRequest());
+        _dishRepository.AddNewDish(dish.ToDishAddRequest());
         return new SuccessResult<string>(null);
     }
 
@@ -57,11 +57,11 @@ public class DishService : IDishService
         {
             return new BadRequestResult<string>("Object Empty");
         }
-        await _dishRepository.ChangeDish(dish.MapDishPutRequest());
+        await _dishRepository.ChangeDish(dish.ToDishPutRequest());
         return new SuccessResult<string>(null);
     }
 
-    public async Task<Result<string>> DeleteById(Guid id)
+    public async Task<Result<string>> DeleteById(int id)
     {
         var result = await _dishRepository.DeleteDishById(id);
 

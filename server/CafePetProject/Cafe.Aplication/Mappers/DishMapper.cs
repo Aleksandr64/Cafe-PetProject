@@ -1,11 +1,11 @@
-﻿using Cafe.Application.DTOs.DishDTOs.Request;
-using Cafe.Domain;
+﻿using Cafe.Domain;
+using ClassLibrary1.DTOs.DishDTOs.Request;
 
-namespace Cafe.Application.Mappers;
+namespace ClassLibrary1.Mappers;
 
 public static class DishMapper
 {
-    public static Dish MapDishAddRequest(this AddDishRequest addDish)
+    public static Dish ToDishAddRequest(this AddDishRequest addDish)
     {
         return new Dish
         {
@@ -16,16 +16,15 @@ public static class DishMapper
         };
     }
 
-    public static Dish MapDishPutRequest(this PutDishRequest putDish)
+    public static Dish ToDishPutRequest(this PutDishRequest putDish)
     {
         return new Dish
         {
-            Id = putDish.Id,
+            DishId = putDish.DishId,
             Title = putDish.Title,
             Description = putDish.Description,
             Price = putDish.Price,
-            ImageUrl = putDish.ImageUrl,
-            DateCreate = putDish.DateCreate
+            ImageUrl = putDish.ImageUrl
         };
     }
 }

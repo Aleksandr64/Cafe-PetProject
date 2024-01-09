@@ -1,4 +1,4 @@
-﻿namespace Cafe.Application.DTOs.DishDTOs.Request;
+﻿namespace ClassLibrary1.DTOs.DishDTOs.Request;
 
 public class AddDishRequest
 {

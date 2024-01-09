@@ -18,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Cafe.Application\Cafe.Application.csproj" />
+      <ProjectReference Include="..\Cafe.Aplication\Cafe.Aplication.csproj" />
       <ProjectReference Include="..\Cafe.Domain\Cafe.Domain.csproj" />
       <ProjectReference Include="..\Cafe.Infrustructure\Cafe.Infrustructure.csproj" />
     </ItemGroup>
