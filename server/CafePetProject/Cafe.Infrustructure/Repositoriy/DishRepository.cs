@@ -18,9 +18,9 @@ public class DishRepository : IDishRepository
         var result = await _dbContext.Dishes.ToListAsync();
         return result;
     }
-    public async Task<Dish> GetDishById(int id)
+    public async Task<Dish> GetDishById(Guid id)
     {
-        var result = await _dbContext.Dishes.FirstOrDefaultAsync(p => p.DishId == id);
+        var result = await _dbContext.Dishes.FirstOrDefaultAsync(p => p.Id == id);
         return result;
     }
     public async Task AddNewDish(Dish dish)
@@ -35,9 +35,9 @@ public class DishRepository : IDishRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<bool> DeleteDishById(int id)
+    public async Task<bool> DeleteDishById(Guid id)
     {
-        var dish = await _dbContext.Dishes.FirstOrDefaultAsync(p => p.DishId == id);
+        var dish = await _dbContext.Dishes.FirstOrDefaultAsync(p => p.Id == id);
 
         if (dish == null)
         {
