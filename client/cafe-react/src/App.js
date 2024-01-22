@@ -1,54 +1,25 @@
 import "./App.css";
-import DishMenu from "./components/DishMenu";
-import { Container, Grid } from "@mui/material";
+import Home from "./pages/Home";
 import Header from "./components/Header";
-import Dish from "./components/Dish";
-import React, { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Cart from "./pages/Cart";
+import NotFound from "./pages/NotFound";
+import { Container } from "@mui/material";
+import React from "react";
+import UserAccountPage from "./pages/UserAccountPage";
 
 function App() {
-  const [isMenuOpen, setMenuOpen] = React.useState(false);
-  const [records, setRecords] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:5179/GetAllDish")
-      .then((response) => response.json())
-      .then((data) => setRecords(data))
-      .catch((err) => console.log(err));
-  }, []);
-
-  console.log(records);
-
   return (
     <>
-      <Header handleCart={() => setMenuOpen(true)} />
-      <DishMenu menuOpen={isMenuOpen} closeMenu={() => setMenuOpen(false)} />
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "25px",
-        }}
-      >
-        <Container
-          sx={{
-            mr: "5%",
-            ml: "5%",
-          }}
-        >
-          <Grid container spacing={3}>
-            {records.map((record) => (
-              <Dish
-                key={record.DishId} // Make sure to provide a unique key for each item in the array
-                title={record.title}
-                description={record.description}
-                price={record.price}
-                imageUrl={record.imageUrl}
-              />
-            ))}
-          </Grid>
-        </Container>
-      </div>
+      <Header />
+      <Container maxWidth="xl" sx={{ mt: "20px", mb: "20px" }}>
+        <Routes>
+          <Route path="/" exact element={<Home />} />
+          <Route path="/order" element={<Cart />} />
+          <Route path="/accountPage" element={<UserAccountPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Container>
     </>
   );
 }

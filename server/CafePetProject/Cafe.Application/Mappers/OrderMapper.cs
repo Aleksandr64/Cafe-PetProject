@@ -15,6 +15,7 @@ public static class OrderMapper
             PhoneNumber = addOrderRequest.PhoneNumber,
             Address = addOrderRequest.Address,
             EmailAddres = addOrderRequest.EmailAddres,
+            TotalAmount = addOrderRequest.TotalAmount,
             OrderItems = new List<OrderItem>()
         };
         order.OrderItems = MapOrderItemsAddRequest(addOrderRequest.OrderItems, order.Id);

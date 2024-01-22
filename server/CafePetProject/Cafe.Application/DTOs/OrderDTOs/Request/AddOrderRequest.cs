@@ -6,5 +6,6 @@ public class AddOrderRequest
     public string PhoneNumber { get; set; }
     public string Address { get; set; }
     public string EmailAddres { get; set; }
+    public double TotalAmount { get; set; }
     public IEnumerable<AddOrderItemRequest>? OrderItems { get; set; }
 }

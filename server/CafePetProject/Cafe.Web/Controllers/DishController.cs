@@ -23,7 +23,7 @@ public class DishController : BaseApiController
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetDishById(Guid id)
+    public async Task<IActionResult> GetDishById(Guid id, string test, string testing)
     {
         var result = await _dishService.GetDishById(id);
         return this.GetResponse(result);
