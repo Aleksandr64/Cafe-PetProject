@@ -1,12 +1,11 @@
-﻿
-using Cafe.Application.DTOs.DishDTOs.Request;
+﻿using Cafe.Application.DTOs.DishDTOs.Request;
+using Cafe.Application.Mappers;
 using Cafe.Application.Services.Inteface;
 using Cafe.Domain;
 using Cafe.Domain.ResultModels;
 using Cafe.Infrustructure.Repositoriy.Interface;
-using Cafe.Application.Mappers;
 
-namespace Cafe.Application.Services;
+namespace Cafe.Application.Services.External;
 
 public class DishService : IDishService
 {
