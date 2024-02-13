@@ -8,13 +8,14 @@ public class TestController : BaseApiController
     [HttpGet]
     public IActionResult FirstTestEndPoint()
     {
-        return Ok("End point work!");
+        return Ok(new { message = "End point work!" });
     }
+
 
     [HttpGet]
     [AuthorizationRole]
     public IActionResult TestAuthAttribute(string? userName)
     {
-        return Ok($"User: {userName}  Authorize!");
+        return Ok(new { message = $"User: {userName}  Authorize!" });
     }
 }

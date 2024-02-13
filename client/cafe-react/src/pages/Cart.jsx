@@ -1,19 +1,18 @@
 import { Container, Grid } from "@mui/material";
-import { Form } from "react-router-dom";
-import FormOrder from "../components/FormOrder";
-import ListDishOrder from "../components/ListDishOrder";
+import FormOrder from "../components/Cart/FormOrder";
+import ListDishOrder from "../components/Cart/ListDishOrder";
 
 export default function Cart() {
   return (
-    <>
-      <Grid container sx={{ padding: "10px" }}>
-        <Grid item xs={6}>
+    <Container>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }}>
           <FormOrder />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6} order={{ xs: 1, sm: 2 }}>
           <ListDishOrder />
         </Grid>
       </Grid>
-    </>
+    </Container>
   );
 }

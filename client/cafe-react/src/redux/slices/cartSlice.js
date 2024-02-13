@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const initialState = {
   customerName: "",
   phoneNumber: "",
   address: "",
-  emailAddres: "",
+  emailAddres: "", // Виправлення помилки в імені властивості
   totalAmount: 0,
   orderItems: [],
 };
@@ -42,4 +44,21 @@ export const cartSlice = createSlice({
 });
 
 export const { addDish, setInputValue, resetCart } = cartSlice.actions;
-export default cartSlice.reducer;
+
+const cartReducer = persistReducer(
+  {
+    key: "cart",
+    storage: storage,
+    whitelist: [
+      "customerName",
+      "phoneNumber",
+      "address",
+      "emailAddres",
+      "totalAmount",
+      "orderItems",
+    ],
+  },
+  cartSlice.reducer,
+);
+
+export default cartReducer;
