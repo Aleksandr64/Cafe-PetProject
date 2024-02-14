@@ -1,21 +1,18 @@
-﻿using Cafe.Domain;
-using Cafe.Domain.ResultModels;
-using Cafe.Infrustructure.Repositoriy.Interface;
-using Cafe.Application.DTOs.OrderDTOs.Request;
+﻿using Cafe.Application.DTOs.OrderDTOs.Request;
 using Cafe.Application.Mappers;
 using Cafe.Application.Services.Inteface;
+using Cafe.Domain.ResultModels;
+using Cafe.Infrustructure.Repositoriy.Interface;
 
-namespace Cafe.Application.Services;
+namespace Cafe.Application.Services.External;
 
 public class OrderService : IOrderService
 {
     private readonly IOrderRepository _orderRepository;
-    private readonly IOrderItemRepository _orderItemRepository;
 
-    public OrderService(IOrderRepository orderRepository, IOrderItemRepository orderItemRepository)
+    public OrderService(IOrderRepository orderRepository)
     {
         _orderRepository = orderRepository;
-        _orderItemRepository = orderItemRepository;
     }
     
     public async Task<Result<string>> AddNewOrder(AddOrderRequest newOrder)

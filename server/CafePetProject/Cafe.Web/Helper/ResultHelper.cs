@@ -12,6 +12,7 @@ public static class ResultHelper
             ResultTypes.Success => result.Data == null ? controller.NoContent() : controller.Ok(result.Data),
             ResultTypes.Invalid => controller.BadRequest(result.Errors),
             ResultTypes.NotFound => controller.NotFound(result.Errors),
+            ResultTypes.UnAuthorized => controller.Unauthorized(result.Errors),
             _ => controller.BadRequest()
         };
     }

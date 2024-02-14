@@ -47,7 +47,7 @@ export default function DishOrder({ dishId, quantity }) {
           </Box>
           <Box sx={{ marginLeft: "15px" }}>
             <Typography gutterBottom variant="h6" component="div">
-              Назва: {dish.title}
+              {dish.title}
             </Typography>
             <Typography gutterBottom variant="h6" component="div">
               Ціна: {dish.price} грн.

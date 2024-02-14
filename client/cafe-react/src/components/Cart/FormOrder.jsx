@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { TextField, Button, styled } from "@mui/material";
-import { orange } from "@mui/material/colors";
+import React from "react";
+import { TextField } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useDispatch, useSelector } from "react-redux";
-import { setInputValue, resetCart } from "../redux/slices/cartSlice";
+import { setInputValue, resetCart } from "../../redux/slices/cartSlice";
 import axios from "axios";
+import { ColorButton } from "../Style/MUIStyle";
 import { useNavigate } from "react-router-dom";
 
 export default function FormOrder() {
@@ -29,13 +29,7 @@ export default function FormOrder() {
   const addFormOrder = (propertyName, event) => {
     dispatch(setInputValue({ propertyName, value: event.target.value }));
   };
-  const ColorButton = styled(Button)(({ theme }) => ({
-    color: theme.palette.getContrastText(orange[500]),
-    backgroundColor: orange[500],
-    "&:hover": {
-      backgroundColor: orange[800],
-    },
-  }));
+
   return (
     <>
       <Typography

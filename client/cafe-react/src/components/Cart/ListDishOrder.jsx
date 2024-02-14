@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 export default function ListDishOrder() {
   const orderList = useSelector((state) => state.cart.orderItems);
+
   return (
     <>
       <Typography
@@ -15,15 +16,26 @@ export default function ListDishOrder() {
       >
         DishList
       </Typography>
-      {orderList.map((items) => {
-        return (
-          <DishOrder
-            key={items.dishId}
-            dishId={items.dishId}
-            quantity={items.quantity}
-          />
-        );
-      })}
+
+      {orderList.length === 0 ? (
+        <Typography
+          variant="h4"
+          component="div"
+          sx={{ padding: "10px", margin: "0px" }}
+        >
+          Cart Empty
+        </Typography>
+      ) : (
+        <>
+          {orderList.map((items) => (
+            <DishOrder
+              key={items.dishId}
+              dishId={items.dishId}
+              quantity={items.quantity}
+            />
+          ))}
+        </>
+      )}
     </>
   );
 }
