@@ -3,7 +3,7 @@ import { setCredentials, logOut } from "../auth/authSlice";
 import {
   selectCurrentAccessToken,
   selectCurrentRefreshToken,
-} from "../auth/authSlice"; // Імпортуємо селектори з файлу з редуктором
+} from "../auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:5179/api",
@@ -51,7 +51,6 @@ export const getNewAccessToken = async (api) => {
     accessToken,
     refreshToken,
   };
-
   try {
     const response = await baseQuery(
       {
@@ -60,11 +59,9 @@ export const getNewAccessToken = async (api) => {
       },
       api,
     );
-
     if (response.error) {
       throw new Error("Failed to get new access token");
     }
-
     const responseData = response.data;
     console.log(responseData);
     return responseData;

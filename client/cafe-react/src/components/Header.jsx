@@ -33,7 +33,7 @@ function Header({ handleCart }) {
               FastFood
             </Link>
           </Typography>
-          <Link to="/welcome">
+          <Link to="/accountPage">
             <IconButton
               size="large"
               aria-label="account of current user"

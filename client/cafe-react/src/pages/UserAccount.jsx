@@ -3,27 +3,25 @@ import {
   selectCurrentUser,
   selectCurrentAccessToken,
   logOut,
-} from "../../redux/auth/authSlice";
-import { Link, useNavigate } from "react-router-dom";
-import { ColorButton } from "../Style/MUIStyle";
+} from "../redux/auth/authSlice";
+import { Link } from "react-router-dom";
+import { ColorButton } from "../components/Style/MUIStyle";
 import Box from "@mui/material/Box";
 import React from "react";
-import { useLogoutMutation } from "../../redux/API/authApiSlice";
+import { useLogoutMutation } from "../redux/API/authApiSlice";
 
-const Welcome = () => {
+const UserAccount = () => {
   const user = useSelector(selectCurrentUser);
   const accessToken = useSelector(selectCurrentAccessToken);
-  const [logout, { isLoading }] = useLogoutMutation();
+  const [logout] = useLogoutMutation();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const welcome = user ? `Welcome ${user}!` : "Welcome!";
-  const tokenAbbr = `${accessToken.slice(0, 9)}...`;
 
   const useLogout = async () => {
     console.log("logout");
     try {
-      await logout(accessToken).unwrap();
+      await logout(accessToken);
       dispatch(logOut());
     } catch (err) {
       if (!err.response) {
@@ -41,7 +39,6 @@ const Welcome = () => {
   const content = (
     <section className="welcome">
       <h1>{welcome}</h1>
-      <p>Token: {tokenAbbr}</p>
       <p>
         <Link to="/testList"> TestEndpoint </Link>
       </p>
@@ -56,7 +53,7 @@ const Welcome = () => {
             }}
             onClick={useLogout}
           >
-            Sign in
+            Log Out
           </Box>
         </ColorButton>
       </Box>
@@ -66,4 +63,4 @@ const Welcome = () => {
   return content;
 };
 
-export default Welcome;
+export default UserAccount;

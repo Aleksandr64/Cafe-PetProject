@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {
   Checkbox,
   FormControlLabel,
+  Grid,
   InputAdornment,
   TextField,
 } from "@mui/material";
@@ -43,12 +44,11 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const userData = await login({ userName, password }).unwrap();
       dispatch(setCredentials({ ...userData, userName }));
       setPwd("");
-      navigate("/welcome");
+      navigate("/accountPage");
     } catch (err) {
       if (!err.response) {
         setErrMsg("No Server Response");
@@ -66,18 +66,25 @@ const Login = () => {
   };
 
   const handleUserInput = (e) => setUser(e.target.value);
-
   const handlePwdInput = (e) => setPwd(e.target.value);
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
   const content = (
     <>
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (
-        <>
+        <Grid
+          container
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            marginTop: "5%",
+          }}
+        >
           <LockPersonIcon
             fontSize="large"
             size="large"
@@ -156,12 +163,12 @@ const Login = () => {
               <Link href="#" underline="hover">
                 Forgot password?
               </Link>
-              <Link href="#" underline="hover">
+              <Link href="/registration" underline="hover">
                 Don't have an account? Sign Up
               </Link>
             </Box>
           </form>
-        </>
+        </Grid>
       )}
     </>
   );

@@ -6,10 +6,11 @@ import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import { Container } from "@mui/material";
 import React from "react";
-import UserAccountPage from "./pages/UserAccountPage";
 import RequireAuth from "./components/Auth/RequireAuth";
-import Welcome from "./components/Auth/Welcom";
+import UserAccount from "./pages/UserAccount";
 import TestReAuth from "./components/Auth/TestReAuth";
+import Registration from "./components/Auth/Registration";
+import Login from "./components/Auth/Login";
 
 function App() {
   return (
@@ -19,9 +20,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/order" element={<Cart />} />
-          <Route path="/accountPage" element={<UserAccountPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
           <Route element={<RequireAuth />}>
-            <Route path="/welcome" element={<Welcome />} />
+            <Route path="/accountPage" element={<UserAccount />} />
             <Route path="/testList" element={<TestReAuth />} />
           </Route>
           <Route path="*" element={<NotFound />} />
