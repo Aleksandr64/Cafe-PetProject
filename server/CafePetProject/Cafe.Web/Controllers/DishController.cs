@@ -30,9 +30,9 @@ public class DishController : BaseApiController
     }
 
     [HttpPost]
-    public IActionResult AddNewDish([FromBody] AddDishRequest dish)
+    public async Task<IActionResult> AddNewDish([FromBody] AddDishRequest dish)
     {
-        var result = _dishService.AddNewDish(dish);
+        var result = await _dishService.AddNewDish(dish);
         return this.GetResponse(result);    
     }
 

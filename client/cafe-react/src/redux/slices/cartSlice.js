@@ -6,7 +6,7 @@ const initialState = {
   customerName: "",
   phoneNumber: "",
   address: "",
-  emailAddres: "", // Виправлення помилки в імені властивості
+  emailAddress: "", // Виправлення помилки в імені властивості
   totalAmount: 0,
   orderItems: [],
 };

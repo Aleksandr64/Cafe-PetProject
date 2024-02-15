@@ -1,6 +1,8 @@
 ﻿using Cafe.Application.DTOs.DishDTOs.Request;
 using Cafe.Application.Mappers;
 using Cafe.Application.Services.Inteface;
+using Cafe.Application.Validations;
+using Cafe.Application.Validations.Dish;
 using Cafe.Domain;
 using Cafe.Domain.ResultModels;
 using Cafe.Infrustructure.Repositoriy.Interface;
@@ -39,22 +41,23 @@ public class DishService : IDishService
         return new SuccessResult<Dish>(result);
     }
 
-    public Result<string> AddNewDish(AddDishRequest dish)
+    public async Task<Result<string>> AddNewDish(AddDishRequest dish)
     {
-        if (dish == null)
+        var validationResult = await new AddDishValidator().ValidateAsync(dish);
+        if (!validationResult.IsValid)
         {
-            return new BadRequestResult<string>("Object Empty");
+            return new BadRequestResult<string>(validationResult.Errors);
         }
-
-        _dishRepository.AddNewDish(dish.MapDishAddRequest());
+        await _dishRepository.AddNewDish(dish.MapDishAddRequest());
         return new SuccessResult<string>(null);
     }
 
     public async Task<Result<string>> ChangeDish(PutDishRequest dish)
     {
-        if (dish == null)
+        var validationResult = await new PutDishValidator().ValidateAsync(dish);
+        if (!validationResult.IsValid)
         {
-            return new BadRequestResult<string>("Object Empty");
+            return new BadRequestResult<string>(validationResult.Errors);
         }
         await _dishRepository.ChangeDish(dish.MapDishPutRequest());
         return new SuccessResult<string>(null);

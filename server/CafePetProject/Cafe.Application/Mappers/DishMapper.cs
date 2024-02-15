@@ -25,7 +25,7 @@ public static class DishMapper
             Description = putDish.Description,
             Price = putDish.Price,
             ImageUrl = putDish.ImageUrl,
-            DateCreate = putDish.DateCreate
+            DateUpdate = DateTime.UtcNow
         };
     }
 }

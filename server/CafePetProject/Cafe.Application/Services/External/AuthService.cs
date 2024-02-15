@@ -7,6 +7,7 @@ using Cafe.Application.DTOs.UserDTOs.Responce;
 using Cafe.Application.Mappers;
 using Cafe.Application.Services.Inteface;
 using Cafe.Application.Services.Internal.Interface;
+using Cafe.Application.Validations.Auth;
 using Cafe.Domain;
 using Cafe.Domain.ResultModels;
 using Cafe.Infrustructure.Repositoriy.Interface;
@@ -30,6 +31,12 @@ public class AuthService : IAuthService
 
     public async Task<Result<TokenResponse>> LoginUser(UserLoginRequest loginRequest)
     {
+        var validationResult = await new LoginValidator().ValidateAsync(loginRequest);
+        if (!validationResult.IsValid)
+        {
+            return new BadRequestResult<TokenResponse>(validationResult.Errors);
+        }
+        
         var user = await _userRepository.FindByNameAsync(loginRequest.UserName);
 
         if (user == null)
@@ -69,6 +76,12 @@ public class AuthService : IAuthService
     
     public async Task<Result<string>> RegisterUser(RegisterUserRequest userRegistration)
     {
+        var validationResult = await new RegistrationValidator().ValidateAsync(userRegistration);
+        if (!validationResult.IsValid)
+        {
+            return new BadRequestResult<string>(validationResult.Errors);
+        }
+        
         var userNameCheck = await _userRepository.CheckByNameAsync(userRegistration.UserName);
 
         if (userNameCheck)

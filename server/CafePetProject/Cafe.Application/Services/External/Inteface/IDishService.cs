@@ -8,7 +8,7 @@ public interface IDishService
 {
     public Task<Result<IEnumerable<Dish>>> GetAllDish();
     public Task<Result<Dish>> GetDishById(Guid id);
-    public Result<string> AddNewDish(AddDishRequest dish);
+    public Task<Result<string>> AddNewDish(AddDishRequest dish);
     public Task<Result<string>> ChangeDish(PutDishRequest dish);
     public Task<Result<string>> DeleteById(Guid id);
 }
