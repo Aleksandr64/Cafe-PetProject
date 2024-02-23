@@ -1,0 +1,33 @@
+
+.formOrder{
+  h2{
+    padding: 10px 0;
+  }
+  label{
+    padding-top: 20px;
+    margin-left: 5px;
+    font-weight: bold;
+  }
+  input[type=text]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0 15px 0;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    border-radius: 4px;
+    outline: none;
+
+    &:hover{
+      border: 1px solid black;
+    }
+    &:focus {
+      border-color: #FF8C00; // Зміна коліру бордера при фокусі
+    }
+  }
+}
+
+.boxWrapper{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}

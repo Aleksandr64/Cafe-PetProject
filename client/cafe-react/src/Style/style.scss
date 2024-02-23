@@ -1,0 +1,47 @@
+.colorButton {
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 18px;
+  background-color: #FFA500;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Додано перехід для плавної зміни кольору при наведенні */
+
+  &:hover {
+    background-color: #FF8C00; /* Darker shade of orange on hover */
+  }
+
+  &:active {
+    background-color: #CC7000; /* Even darker shade of orange on click */
+  }
+}
+
+.iconButton {
+  font-size: 25px;
+  float: left;
+  color: white;
+  text-align: center;
+  line-height: 25px;
+}
+
+.round-button {
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  padding: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
+  outline: none;
+  &:hover{
+    background-color: rgba(0, 0, 0, 0.1); /* Затемнення при наведенні */
+  }
+}
+
+.container{
+  padding: 20px;
+}

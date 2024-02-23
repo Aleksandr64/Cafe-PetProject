@@ -53,7 +53,7 @@ const cartReducer = persistReducer(
       "customerName",
       "phoneNumber",
       "address",
-      "emailAddres",
+      "emailAddress",
       "totalAmount",
       "orderItems",
     ],

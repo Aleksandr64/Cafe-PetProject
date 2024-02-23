@@ -1,0 +1,29 @@
+.header {
+  overflow: hidden;
+  background-color: #ef6c00;
+  padding: 10px 20px;
+
+  .logo {
+    font-size: 35px;
+    font-weight: 500;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    line-height: 53px;
+    padding-left: 10px;
+  }
+  svg{
+    font-size: 25px;
+    padding: 0;
+    float: left;
+    color: white;
+    text-align: center;
+    line-height: 25px;
+  }
+}
+
+.headerRight {
+  float: right;
+}
+
+

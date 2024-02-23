@@ -1,18 +1,18 @@
-import { Container, Grid } from "@mui/material";
 import FormOrder from "../components/Cart/FormOrder";
 import ListDishOrder from "../components/Cart/ListDishOrder";
+import styles from './Cart.module.scss';
 
 export default function Cart() {
   return (
-    <Container>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }}>
-          <FormOrder />
-        </Grid>
-        <Grid item xs={12} sm={6} order={{ xs: 1, sm: 2 }}>
-          <ListDishOrder />
-        </Grid>
-      </Grid>
-    </Container>
+    <div className={styles.container}>
+      <div className={styles.gridContainer}>
+        <div className={styles.item1}>
+          <FormOrder/>
+        </div>
+        <div className={styles.item2}>
+          <ListDishOrder/>
+        </div>
+      </div>
+    </div>
   );
 }

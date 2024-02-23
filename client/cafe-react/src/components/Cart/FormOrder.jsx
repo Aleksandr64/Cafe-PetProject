@@ -1,12 +1,10 @@
 import React from "react";
-import { TextField } from "@mui/material";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import { useDispatch, useSelector } from "react-redux";
 import { setInputValue, resetCart } from "../../redux/slices/cartSlice";
 import axios from "axios";
-import { ColorButton } from "../Style/MUIStyle";
 import { useNavigate } from "react-router-dom";
+import "../../Style/style.scss";
+import styles from './FormOrder.module.scss'
 
 export default function FormOrder() {
   const navigate = useNavigate();
@@ -31,63 +29,40 @@ export default function FormOrder() {
   };
 
   return (
-    <>
-      <Typography
-        gutterBottom
-        variant="h3"
-        component="div"
-        sx={{ padding: "10px", margin: "0px" }}
-      >
+    <div className={styles.formOrder}>
+      <h2>
         Form
-      </Typography>
-      <Box component="form" sx={{ width: "500px", padding: "10px" }}>
-        <TextField
+      </h2>
+      <form>
+        <label htmlFor="customerName">Ім'я</label>
+        <input
+          type="text"
           id="customerName"
-          fullWidth
-          label="Ім'я"
-          color="warning"
           onChange={(event) => addFormOrder("customerName", event)}
           value={cart.customerName}
-        />
-      </Box>
-      <Box component="form" sx={{ width: "500px", padding: "10px" }}>
-        <TextField
+          required/>
+        <label htmlFor="phoneNumber">Номер телефону</label>
+        <input
+          type="text"
           id="phoneNumber"
-          fullWidth
-          label="Номер телефону"
-          color="warning"
           onChange={(event) => addFormOrder("phoneNumber", event)}
-          value={cart.phoneNumber}
-        />
-      </Box>
-      <Box component="form" sx={{ width: "500px", padding: "10px" }}>
-        <TextField
-          id="address"
-          fullWidth
-          label="Адреса доставки"
-          color="warning"
-          onChange={(event) => addFormOrder("address", event)}
-          value={cart.address}
-        />
-      </Box>
-      <Box component="form" sx={{ width: "500px", padding: "10px" }}>
-        <TextField
+          value={cart.phoneNumber}/>
+        <label htmlFor="emailAddress">Електронна Адресса</label>
+        <input
+          type="text"
           id="emailAddress"
-          label="Електорнна адреса"
-          color="warning"
-          fullWidth
           onChange={(event) => addFormOrder("emailAddress", event)}
-          value={cart.emailAddress}
-        />
-      </Box>
-      <Box sx={{ width: "500px", padding: "10px" }}>
-        <Typography gutterBottom variant="h6" component="div">
-          Сума замовлення: {cart.totalAmount.toFixed(2)} грн.
-        </Typography>
-      </Box>
-      <Box onClick={createOrder} sx={{ padding: "10px" }}>
-        <ColorButton variant="contained">Створити замовлення</ColorButton>
-      </Box>
-    </>
+          value={cart.emailAddress}/>
+        <label htmlFor="address">Адреса доставки</label>
+        <input
+          type="text"
+          id="address"
+          onChange={(event) => addFormOrder("address", event)}
+          value={cart.address}/>
+      </form>
+      <div className={styles.boxWrapper}>
+        <button className="colorButton" type="submit" onClick={createOrder}>Створити замовлення</button>
+      </div>
+    </div>
   );
 }

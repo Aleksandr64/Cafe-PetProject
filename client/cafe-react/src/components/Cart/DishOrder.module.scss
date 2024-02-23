@@ -1,0 +1,51 @@
+.myCard {
+  margin-top: 15px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  max-height: 470px;
+
+  .boxWrapper {
+    max-height: 90%;
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+
+    .imageWrapper {
+      max-height: 90%;
+      max-width: 400px;
+      padding-left: 10px;
+      padding-right: 10px;
+      border-radius: 30px;
+
+      .dishImage {
+        width: 100%;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+      }
+    }
+    .contentWrapper {
+      margin-left: 15px;
+      p{
+        font-size: 20px;
+        font-weight: bold;
+        margin: 15px 0px;
+      }
+    }
+
+    .iconWrapper {
+      margin-left: auto;
+      margin-right: 10px;
+      svg{
+        color: #FF8C00;
+      }
+    }
+  }
+}
+
+

@@ -1,14 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
-import {
-  selectCurrentUser,
-  selectCurrentAccessToken,
-  logOut,
-} from "../redux/auth/authSlice";
-import { Link } from "react-router-dom";
-import { ColorButton } from "../components/Style/MUIStyle";
-import Box from "@mui/material/Box";
 import React from "react";
-import { useLogoutMutation } from "../redux/API/authApiSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {logOut, selectCurrentAccessToken, selectCurrentUser,} from "../redux/auth/authSlice";
+import {Link} from "react-router-dom";
+import {useLogoutMutation} from "../redux/API/authApiSlice";
+import '../Style/style.scss';
+import styles from "./UserAccount.module.scss"
 
 const UserAccount = () => {
   const user = useSelector(selectCurrentUser);
@@ -36,31 +32,17 @@ const UserAccount = () => {
     }
   };
 
-  const content = (
-    <section className="welcome">
+  return (
+    <section>
       <h1>{welcome}</h1>
       <p>
         <Link to="/testList"> TestEndpoint </Link>
       </p>
-      <Box sx={{ padding: "10px" }}>
-        <ColorButton variant="contained" type="submit">
-          <Box
-            sx={{
-              width: "468px",
-              paddingTop: "5px",
-              paddingBottom: "5px",
-              color: "white",
-            }}
-            onClick={useLogout}
-          >
-            Log Out
-          </Box>
-        </ColorButton>
-      </Box>
+      <div className={styles.boxWrapper}>
+        <button className="colorButton" type="submit" onClick={useLogout}>Log Out</button>
+      </div>
     </section>
   );
-
-  return content;
 };
 
 export default UserAccount;
