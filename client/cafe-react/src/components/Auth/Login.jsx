@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FaUserLock } from "react-icons/fa6";
 import { useLoginMutation } from "../../redux/API/authApiSlice";
 import { useDispatch } from "react-redux";
-import { setCredentials } from "../../redux/auth/authSlice";
+import { setCredentials } from "../../redux/slices/authSlice";
 import {Link} from "react-router-dom";
 import styles from "./Login.module.scss";
 import {MdVisibility, MdVisibilityOff} from "react-icons/md";

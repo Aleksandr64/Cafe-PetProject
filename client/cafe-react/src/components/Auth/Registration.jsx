@@ -17,8 +17,6 @@ const Registration = () => {
 
   const navigate = useNavigate();
   const [registration, { isLoading }] = useRegistrationMutation();
-  const test = useRegistrationMutation();
-  console.log(test);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,15 +28,16 @@ const Registration = () => {
         password,
         email,
         phoneNumber,
-      });
+      }).unwrap();
       setPassword("");
       navigate("/login");
     } catch (err) {
+      console.log(err);
       if (!err.response) {
         console.log("No Server Response");
       } else if (err.response.status === 400) {
         console.log("Missing Username or Password");
-      } else if (err.response?.status === 401) {
+      } else if (err.response.status === 401) {
         console.log("Unauthorized");
       } else {
         console.log("Login Failed");

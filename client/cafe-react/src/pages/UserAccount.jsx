@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {logOut, selectCurrentAccessToken, selectCurrentUser,} from "../redux/auth/authSlice";
+import {logOut, selectCurrentAccessToken, selectCurrentUser,} from "../redux/slices/authSlice";
 import {Link} from "react-router-dom";
 import {useLogoutMutation} from "../redux/API/authApiSlice";
 import '../Style/style.scss';

@@ -1,26 +1,32 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setInputValue, resetCart } from "../../redux/slices/cartSlice";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../Style/style.scss";
 import styles from './FormOrder.module.scss'
+import {useCreateOrderMutation} from "../../redux/API/cartApiSlice";
 
 export default function FormOrder() {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const [createOrder] = useCreateOrderMutation();
 
-  const createOrder = async () => {
-    const url = "http://localhost:5179/api/Order/AddNewOrder";
-    console.log(url);
-    const responce = await axios.post(url, cart);
-    console.log(responce);
-    if (responce.status === 204) {
+  const submitOrder = async () => {
+    try {
+      await createOrder(cart).unwrap();
       dispatch(resetCart());
       navigate("/");
-    } else {
-      navigate("NotFound");
+    } catch (err) {
+      if (!err.response) {
+        console.log("No Server Response");
+      } else if (err.response.status === 400) {
+        console.log("Missing Username or Password");
+      } else if (err.response?.status === 401) {
+        console.log("Unauthorized");
+      } else {
+        console.log("Failed");
+      }
     }
   };
 
@@ -60,8 +66,11 @@ export default function FormOrder() {
           onChange={(event) => addFormOrder("address", event)}
           value={cart.address}/>
       </form>
+      <p>
+        Сума замовлення: {cart.totalAmount.toFixed(2)} грн.
+      </p>
       <div className={styles.boxWrapper}>
-        <button className="colorButton" type="submit" onClick={createOrder}>Створити замовлення</button>
+        <button className="colorButton" type="submit" onClick={submitOrder}>Створити замовлення</button>
       </div>
     </div>
   );
