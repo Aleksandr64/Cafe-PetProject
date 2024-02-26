@@ -28,7 +28,7 @@ export default function FormOrder() {
         console.log("Failed");
       }
     }
-  };
+  }
 
   const addFormOrder = (propertyName, event) => {
     dispatch(setInputValue({ propertyName, value: event.target.value }));
@@ -41,30 +41,45 @@ export default function FormOrder() {
       </h2>
       <form>
         <label htmlFor="customerName">Ім'я</label>
-        <input
-          type="text"
-          id="customerName"
-          onChange={(event) => addFormOrder("customerName", event)}
-          value={cart.customerName}
-          required/>
+        <div className="formField">
+          <input
+            type="text"
+            id="customerName"
+            className="input"
+            onChange={(event) => addFormOrder("customerName", event)}
+            value={cart.customerName}
+            required/>
+        </div>
         <label htmlFor="phoneNumber">Номер телефону</label>
-        <input
-          type="text"
-          id="phoneNumber"
-          onChange={(event) => addFormOrder("phoneNumber", event)}
-          value={cart.phoneNumber}/>
+        <div className="formField">
+          <input
+            type="text"
+            id="phoneNumber"
+            className="input"
+            onChange={(event) => addFormOrder("phoneNumber", event)}
+            value={cart.phoneNumber}
+            required/>
+        </div>
         <label htmlFor="emailAddress">Електронна Адресса</label>
-        <input
-          type="text"
-          id="emailAddress"
-          onChange={(event) => addFormOrder("emailAddress", event)}
-          value={cart.emailAddress}/>
+        <div className="formField">
+          <input
+            type="text"
+            id="emailAddress"
+            className="input"
+            onChange={(event) => addFormOrder("emailAddress", event)}
+            value={cart.emailAddress}
+            required/>
+        </div>
         <label htmlFor="address">Адреса доставки</label>
-        <input
-          type="text"
-          id="address"
-          onChange={(event) => addFormOrder("address", event)}
-          value={cart.address}/>
+        <div className="formField">
+          <input
+            type="text"
+            id="address"
+            className="input"
+            onChange={(event) => addFormOrder("address", event)}
+            value={cart.address}
+            required/>
+        </div>
       </form>
       <p>
         Сума замовлення: {cart.totalAmount.toFixed(2)} грн.

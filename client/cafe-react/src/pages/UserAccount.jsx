@@ -39,7 +39,7 @@ const UserAccount = () => {
         <Link to="/testList"> TestEndpoint </Link>
       </p>
       <div className={styles.boxWrapper}>
-        <button className="colorButton" type="submit" onClick={useLogout}>Log Out</button>
+        <button className={`colorButton ${styles.buttonWidth}`} type="submit" onClick={useLogout}>Log Out</button>
       </div>
     </section>
   );

@@ -1,50 +1,62 @@
 .myCard {
+  padding: 10px;
+  display: flex;
+  align-items: center;
   margin-top: 15px;
   margin-bottom: 25px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   transition: 0.3s;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
-  max-height: 470px;
 
-  .boxWrapper {
-    max-height: 90%;
+  .imageContainer {
     position: relative;
-    border-radius: 30px;
+    width: 100%;
+    border-radius: 10px;
     overflow: hidden;
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 
-    .imageWrapper {
-      max-height: 90%;
-      max-width: 400px;
-      padding-left: 10px;
-      padding-right: 10px;
-      border-radius: 30px;
-
-      .dishImage {
-        width: 100%;
-        border-radius: 30px;
-        display: flex;
-        align-items: center;
-      }
+    .dishImage {
+      width: 100%;
+      border-radius: 10px;
     }
-    .contentWrapper {
-      margin-left: 15px;
+  }
+  .contentContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .detailsContainer {
+      display: flex;
+      flex-direction: column;
       p{
+        margin: 10px 0 10px 10px;
         font-size: 20px;
-        font-weight: bold;
-        margin: 15px 0px;
+      }
+      @media (max-width: 470px) {
+        p{
+          margin: 5px 0 5px 5px;
+          font-size: 18px;
+        }
       }
     }
-
-    .iconWrapper {
+    .buttonContainer {
+      display: flex;
+      align-items: center;
       margin-left: auto;
       margin-right: 10px;
       svg{
         color: #FF8C00;
       }
     }
+  }
+}
+
+@media (max-width: 470px) {
+  .myCard{
+    display: block;
   }
 }
 

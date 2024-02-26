@@ -1,8 +1,8 @@
 import Dish from "../components/Home/Dish";
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setAllDish } from "../redux/slices/dishSlice";
+import React, {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {setAllDish} from "../redux/slices/dishSlice";
 import styles from './Home.module.scss';
 import {useGetAllDishMutation} from "../redux/API/dishApiSlice";
 
@@ -18,7 +18,6 @@ export default function Home() {
         const response = await getAllDish().unwrap();
         dispatch(setAllDish(response));
       } catch (err) {
-        console.log(err)
         if (!err.status) {
           console.log("No Server Response");
           navigate("NotFound");
@@ -27,7 +26,7 @@ export default function Home() {
           navigate("NotFound");
         } else if (err.status === 401) {
           console.log("Unauthorized");
-          navigate("NotFound");
+          navigate("/login");
         } else {
           console.log("Login Failed");
           navigate("NotFound");

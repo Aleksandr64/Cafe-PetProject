@@ -64,9 +64,9 @@ const Registration = () => {
             Sign Up
           </p>
           <form onSubmit={handleSubmit} className={styles.formContainer}>
-            <div className={styles.formField}>
+            <div className="formField">
               <input
-                className={styles.input}
+                className="input"
                 type="text"
                 id="firstName"
                 placeholder="First Name"
@@ -74,9 +74,9 @@ const Registration = () => {
                 required
               />
             </div>
-            <div className={styles.formField}>
+            <div className="formField">
               <input
-                className={styles.input}
+                className="input"
                 type="text"
                 id="lastName"
                 placeholder="Last Name"
@@ -84,9 +84,9 @@ const Registration = () => {
                 required
               />
             </div>
-            <div className={styles.formField}>
+            <div className="formField">
               <input
-                className={styles.input}
+                className="input"
                 type="text"
                 id="userName"
                 placeholder="UserName"
@@ -94,21 +94,22 @@ const Registration = () => {
                 required
               />
             </div>
-            <div className={styles.formField}>
+            <div className="formField">
               <input
-                className={styles.input}
+                className="input"
                 type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="Password"
                 onChange={handlePwdInput}
+                required
               />
-              <button type="button" className="round-button" onClick={togglePasswordVisibility}>
+              <button type="button" className="roundButton" onClick={togglePasswordVisibility}>
                 {showPassword ? <MdVisibility className="iconButton"/> : <MdVisibilityOff className="iconButton"/>}
               </button>
             </div>
-            <div className={styles.formField}>
+            <div className="formField">
               <input
-                className={styles.input}
+                className="input"
                 type="email"
                 id="email"
                 placeholder="Email"
@@ -116,9 +117,9 @@ const Registration = () => {
                 required
               />
             </div>
-            <div className={styles.formField}>
+            <div className="formField">
               <input
-                className={styles.input}
+                className="input"
                 type="tel"
                 id="phoneNumber"
                 placeholder="Phone Number"

@@ -27,7 +27,7 @@ const TestReAuth = () => {
       }
     };
 
-    fetchData();
+    fetchData().then(r => console.log(r));
   }, [user]);
 
   let content;

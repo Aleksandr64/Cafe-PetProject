@@ -21,7 +21,7 @@ export default function Dish(props) {
           <p>{props.price.toFixed(2)} грн.</p>
         </div>
         <div className={styles.cartContainer}>
-          <button className="round-button">
+          <button className="roundButton">
             <MdOutlineAddShoppingCart className="iconButton" onClick={() => dispatch(addDish({dishId: props.id, price: props.price}))}/>
           </button>
           <div className={styles.quantity}>

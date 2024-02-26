@@ -12,12 +12,12 @@ const Header = () =>{
       </Link>
       <div className={styles.headerRight}>
         <Link to='/accountPage'>
-          <button className="round-button">
+          <button className="roundButton">
             <MdAccountCircle className="iconButton"/>
           </button>
         </Link>
         <Link to='/order'>
-          <button className="round-button">
+          <button className="roundButton">
             <MdOutlineAddShoppingCart className="iconButton"/>
           </button>
         </Link>

@@ -10,8 +10,6 @@ export const dishSlice = createSlice({
   reducers: {
     setAllDish: (state, action) => {
       state.dishes = action.payload;
-      console.log("setDishes");
-      console.log(action.payload);
     },
   },
 });
