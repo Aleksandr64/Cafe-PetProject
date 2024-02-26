@@ -1,7 +1,8 @@
 export default function NotFound() {
   return (
     <>
-      <h1>Нічого не знайдено!!!</h1>
+      <h1>404</h1>
+      <h2>Page Not Found</h2>
     </>
   );
 }

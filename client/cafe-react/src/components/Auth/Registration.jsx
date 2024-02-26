@@ -1,15 +1,10 @@
 import React from "react";
-import EditNoteIcon from "@mui/icons-material/EditNote";
-import { orange } from "@mui/material/colors";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import { Grid, InputAdornment, TextField } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { ColorButton } from "../Style/MUIStyle";
 import { useRegistrationMutation } from "../../redux/API/authApiSlice";
 import { useNavigate } from "react-router-dom";
+import '../../Style/style.scss';
+import styles from "./Registration.module.scss";
+import { MdVisibility } from "react-icons/md";
+import { MdVisibilityOff } from "react-icons/md";
 
 const Registration = () => {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -22,8 +17,6 @@ const Registration = () => {
 
   const navigate = useNavigate();
   const [registration, { isLoading }] = useRegistrationMutation();
-  const test = useRegistrationMutation();
-  console.log(test);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,15 +28,16 @@ const Registration = () => {
         password,
         email,
         phoneNumber,
-      });
+      }).unwrap();
       setPassword("");
       navigate("/login");
     } catch (err) {
+      console.log(err);
       if (!err.response) {
         console.log("No Server Response");
       } else if (err.response.status === 400) {
         console.log("Missing Username or Password");
-      } else if (err.response?.status === 401) {
+      } else if (err.response.status === 401) {
         console.log("Unauthorized");
       } else {
         console.log("Login Failed");
@@ -61,115 +55,91 @@ const Registration = () => {
 
   const content = (
     <>
-      {isLoading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <Grid
-          container
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginTop: "5%",
-          }}
-        >
-          <Typography variant="h5" component="div" sx={{ mt: "10px" }}>
+    {isLoading ? (
+      <h1>Loading...</h1>
+    ) : (
+      <>
+        <div className={styles.gridContainer}>
+          <p className={styles.signUpTitle}>
             Sign Up
-          </Typography>
-          <form onSubmit={handleSubmit}>
-            <Box sx={{ width: "500px", padding: "10px" }}>
-              <TextField
+          </p>
+          <form onSubmit={handleSubmit} className={styles.formContainer}>
+            <div className="formField">
+              <input
+                className="input"
+                type="text"
                 id="firstName"
-                fullWidth
-                label="First Name"
-                color="warning"
+                placeholder="First Name"
                 onChange={handleFirstNameInput}
                 required
               />
-            </Box>
-            <Box sx={{ width: "500px", padding: "10px" }}>
-              <TextField
+            </div>
+            <div className="formField">
+              <input
+                className="input"
+                type="text"
                 id="lastName"
-                fullWidth
-                label="Last Name"
-                color="warning"
+                placeholder="Last Name"
                 onChange={handleLastNameInput}
                 required
               />
-            </Box>
-            <Box sx={{ width: "500px", padding: "10px" }}>
-              <TextField
+            </div>
+            <div className="formField">
+              <input
+                className="input"
+                type="text"
                 id="userName"
-                fullWidth
-                label="UserName"
-                color="warning"
+                placeholder="UserName"
                 onChange={handleUserNameInput}
                 required
               />
-            </Box>
-            <Box sx={{ width: "500px", padding: "10px" }}>
-              <TextField
-                label="Password"
+            </div>
+            <div className="formField">
+              <input
+                className="input"
                 type={showPassword ? "text" : "password"}
-                variant="outlined"
-                color="warning"
-                fullWidth
+                id="password"
+                placeholder="Password"
                 onChange={handlePwdInput}
                 required
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={togglePasswordVisibility} edge="end">
-                        {showPassword ? (
-                          <VisibilityIcon />
-                        ) : (
-                          <VisibilityOffIcon />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
               />
-            </Box>
-            <Box sx={{ width: "500px", padding: "10px" }}>
-              <TextField
+              <button type="button" className="roundButton" onClick={togglePasswordVisibility}>
+                {showPassword ? <MdVisibility className="iconButton"/> : <MdVisibilityOff className="iconButton"/>}
+              </button>
+            </div>
+            <div className="formField">
+              <input
+                className="input"
+                type="email"
                 id="email"
-                fullWidth
-                label="Email"
-                color="warning"
+                placeholder="Email"
                 onChange={handleEmailInput}
                 required
               />
-            </Box>
-            <Box sx={{ width: "500px", padding: "10px" }}>
-              <TextField
+            </div>
+            <div className="formField">
+              <input
+                className="input"
+                type="tel"
                 id="phoneNumber"
-                fullWidth
-                label="Phone Number"
-                color="warning"
+                placeholder="Phone Number"
                 onChange={handlePhoneNumberInput}
                 required
               />
-            </Box>
-            <Box sx={{ padding: "10px" }}>
-              <ColorButton variant="contained" type="submit">
-                <Box
-                  sx={{
-                    width: "468px",
-                    paddingTop: "5px",
-                    paddingBottom: "5px",
-                    color: "white",
-                  }}
-                >
-                  Sign Up
-                </Box>
-              </ColorButton>
-            </Box>
+            </div>
+            <div className={styles.buttonField}>
+              <button type="submit" className="colorButton">
+                Sign Up
+              </button>
+            </div>
           </form>
-        </Grid>
-      )}
+        </div>
+      </>
+    )
+    }
     </>
-  );
+    )
+  ;
   return content;
 };
 

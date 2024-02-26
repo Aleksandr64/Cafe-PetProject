@@ -1,30 +1,20 @@
 import DishOrder from "./DishOrder";
-import Typography from "@mui/material/Typography";
 import React from "react";
 import { useSelector } from "react-redux";
+import styles from "./ListDishOrder.module.scss"
 
 export default function ListDishOrder() {
   const orderList = useSelector((state) => state.cart.orderItems);
 
   return (
-    <>
-      <Typography
-        gutterBottom
-        variant="h3"
-        component="div"
-        sx={{ padding: "10px", margin: "0px" }}
-      >
+    <div  className={styles}>
+      <h2>
         DishList
-      </Typography>
-
+      </h2>
       {orderList.length === 0 ? (
-        <Typography
-          variant="h4"
-          component="div"
-          sx={{ padding: "10px", margin: "0px" }}
-        >
+        <h3>
           Cart Empty
-        </Typography>
+        </h3>
       ) : (
         <>
           {orderList.map((items) => (
@@ -36,6 +26,6 @@ export default function ListDishOrder() {
           ))}
         </>
       )}
-    </>
+    </div>
   );
 }

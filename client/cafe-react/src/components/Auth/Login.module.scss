@@ -1,0 +1,52 @@
+.gridContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 19px;
+
+  svg{
+    color: #FF8C00;
+    font-size: 40px;
+  }
+
+  .signUpTitle {
+    font-size: 24px;
+    margin: 5px;
+    font-weight: bold;
+  }
+
+  .formContainer {
+    width: 500px;
+    padding: 10px;
+
+    .buttonField {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .linkForm{
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 6px;
+    a{
+      color: #0072c7;
+      text-decoration: none;
+      transition: text-decoration 0.3s ease;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@media (max-width: 702px) {
+  .gridContainer{
+    .formContainer{
+      width: 90%;
+    }
+    .linkForm{
+      width: 90%;
+    }
+  }
+}

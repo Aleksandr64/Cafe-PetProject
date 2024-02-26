@@ -49,16 +49,10 @@ const cartReducer = persistReducer(
   {
     key: "cart",
     storage: storage,
-    whitelist: [
-      "customerName",
-      "phoneNumber",
-      "address",
-      "emailAddres",
-      "totalAmount",
-      "orderItems",
-    ],
+    whitelist: ["totalAmount", "orderItems"], // Список ключів, які ви хочете зберегти
   },
   cartSlice.reducer,
 );
 
 export default cartReducer;
+

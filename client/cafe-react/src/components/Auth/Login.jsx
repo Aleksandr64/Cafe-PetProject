@@ -1,24 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Checkbox,
-  FormControlLabel,
-  Grid,
-  InputAdornment,
-  TextField,
-} from "@mui/material";
-import { orange } from "@mui/material/colors";
-import LockPersonIcon from "@mui/icons-material/LockPerson";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { ColorButton } from "../Style/MUIStyle";
-import Link from "@mui/material/Link";
+import { FaUserLock } from "react-icons/fa6";
 import { useLoginMutation } from "../../redux/API/authApiSlice";
 import { useDispatch } from "react-redux";
-import { setCredentials } from "../../redux/auth/authSlice";
+import { setCredentials } from "../../redux/slices/authSlice";
+import {Link} from "react-router-dom";
+import styles from "./Login.module.scss";
+import {MdVisibility, MdVisibilityOff} from "react-icons/md";
 
 const Login = () => {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -73,105 +61,60 @@ const Login = () => {
 
   const content = (
     <>
-      {isLoading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <Grid
-          container
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginTop: "5%",
-          }}
-        >
-          <LockPersonIcon
-            fontSize="large"
-            size="large"
-            sx={{ color: orange[500] }}
-          />
-          <Typography variant="h5" component="div" sx={{ mt: "10px" }}>
-            Sign In
-          </Typography>
-          <form onSubmit={handleSubmit}>
-            <Box sx={{ width: "500px", padding: "10px" }}>
-              <TextField
+    {isLoading ? (
+      <h1>Loading...</h1>
+    ) : (
+      <>
+        <div className={styles.gridContainer}>
+          <FaUserLock className='iconButton' />
+          <p className={styles.signUpTitle}>
+            Sign IN
+          </p>
+          <form onSubmit={handleSubmit} className={styles.formContainer}>
+            <div className="formField">
+              <input
+                className="input"
+                type="text"
                 id="userName"
-                fullWidth
-                label="UserName"
-                color="warning"
+                placeholder="UserName"
                 onChange={handleUserInput}
                 required
               />
-            </Box>
-            <Box sx={{ width: "500px", padding: "10px" }}>
-              <TextField
-                label="Password"
+            </div>
+            <div className="formField">
+              <input
+                className="input"
                 type={showPassword ? "text" : "password"}
-                variant="outlined"
-                color="warning"
-                fullWidth
+                id="password"
+                placeholder="Password"
                 onChange={handlePwdInput}
                 required
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={togglePasswordVisibility} edge="end">
-                        {showPassword ? (
-                          <VisibilityIcon />
-                        ) : (
-                          <VisibilityOffIcon />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
               />
-            </Box>
-            <Typography variant="h5" component="div" sx={{ mt: "10px" }}>
-              {errMsg}
-            </Typography>
-            <Box sx={{ width: "500px", ml: "10px" }}>
-              <FormControlLabel
-                control={<Checkbox color="warning" />}
-                color="warning"
-                label="Remember me"
-              />
-            </Box>
-            <Box sx={{ padding: "10px" }}>
-              <ColorButton variant="contained" type="submit">
-                <Box
-                  sx={{
-                    width: "468px",
-                    paddingTop: "5px",
-                    paddingBottom: "5px",
-                    color: "white",
-                  }}
-                >
-                  Sign in
-                </Box>
-              </ColorButton>
-            </Box>
-            <Box
-              sx={{
-                width: "500px",
-                display: "flex",
-                justifyContent: "space-between",
-                paddingLeft: "10px",
-              }}
-            >
-              <Link href="#" underline="hover">
-                Forgot password?
-              </Link>
-              <Link href="/registration" underline="hover">
-                Don't have an account? Sign Up
-              </Link>
-            </Box>
+              <button type="button" className="roundButton" onClick={togglePasswordVisibility}>
+                {showPassword ? <MdVisibility className="iconButton"/> : <MdVisibilityOff className="iconButton"/>}
+              </button>
+            </div>
+            <div className={styles.buttonField}>
+              <button type="submit" className="colorButton">
+                Sign IN
+              </button>
+            </div>
           </form>
-        </Grid>
-      )}
+          <div className={styles.linkForm}>
+            <Link to="#">
+              Forgot password?
+            </Link>
+            <Link to="/registration" >
+              Don't have an account? Sign Up
+            </Link>
+          </div>
+        </div>
+      </>
+    )
+    }
     </>
-  );
+    )
+  ;
   return content;
 };
 

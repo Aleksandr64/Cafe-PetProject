@@ -1,22 +1,22 @@
+import React from "react";
 import "./App.css";
 import Home from "./pages/Home";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import { Route, Routes } from "react-router-dom";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
-import { Container } from "@mui/material";
-import React from "react";
 import RequireAuth from "./components/Auth/RequireAuth";
 import UserAccount from "./pages/UserAccount";
 import TestReAuth from "./components/Auth/TestReAuth";
 import Registration from "./components/Auth/Registration";
 import Login from "./components/Auth/Login";
+import './Style/style.scss';
 
 function App() {
   return (
     <>
-      <Header />
-      <Container maxWidth="xl" sx={{ mt: "20px", mb: "20px" }}>
+      <Header/>
+      <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/order" element={<Cart />} />
@@ -28,7 +28,7 @@ function App() {
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </Container>
+      </div>
     </>
   );
 }

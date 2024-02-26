@@ -1,0 +1,63 @@
+.myCard {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+
+  .imageContainer {
+    position: relative;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .dishImage {
+      width: 100%;
+      border-radius: 10px;
+    }
+  }
+  .contentContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .detailsContainer {
+      display: flex;
+      flex-direction: column;
+      p{
+        margin: 10px 0 10px 10px;
+        font-size: 20px;
+      }
+      @media (max-width: 470px) {
+        p{
+          margin: 5px 0 5px 5px;
+          font-size: 18px;
+        }
+      }
+    }
+    .buttonContainer {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      margin-right: 10px;
+      svg{
+        color: #FF8C00;
+      }
+    }
+  }
+}
+
+@media (max-width: 470px) {
+  .myCard{
+    display: block;
+  }
+}
+
+

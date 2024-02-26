@@ -1,6 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import {
-  persistReducer,
   persistStore,
   FLUSH,
   REHYDRATE,
@@ -9,33 +8,25 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // виберіть тип зберігання, який ви хочете використовувати (наприклад, localStorage або AsyncStorage)
 import { apiSlice } from "./API/apiSlice";
 import cartReducer from "./slices/cartSlice";
-import dishesReducer from "./slices/dishSlice";
-import authReducer from "./auth/authSlice";
+import dishReducer from "./slices/dishSlice";
+import authReducer from "./slices/authSlice";
+
 
 const rootReducer = combineReducers({
   cart: cartReducer,
-  dish: dishesReducer,
+  dish: dishReducer,
   auth: authReducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
 
-const persistConfig = {
-  key: "root",
-  storage,
-  blacklist: ["cart"],
-};
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(apiSlice.middleware),
   devTools: true,

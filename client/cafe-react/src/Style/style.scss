@@ -1,0 +1,80 @@
+.colorButton {
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 18px;
+  background-color: #FFA500;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Додано перехід для плавної зміни кольору при наведенні */
+
+  &:hover {
+    background-color: #FF8C00; /* Darker shade of orange on hover */
+  }
+
+  &:active {
+    background-color: #CC7000; /* Even darker shade of orange on click */
+  }
+}
+
+.iconButton {
+  font-size: 25px;
+  float: left;
+  color: white;
+  text-align: center;
+  line-height: 25px;
+}
+
+.roundButton {
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  padding: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s, border-color 0.3s, opacity 0.3s;
+  outline: none;
+  &:hover{
+    background-color: rgba(0, 0, 0, 0.1); /* Затемнення при наведенні */
+  }
+}
+
+.container{
+  padding: 20px;
+}
+
+.formField {
+  position: relative;
+
+  .input{
+    width: 100%;
+    padding: 20px;
+    margin: 8px 0 15px 0;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    border-radius: 4px;
+    outline: none;
+
+    &:hover{
+      border: 1px solid black;
+    }
+
+    &:focus {
+      border-color: #FF8C00; // Зміна коліру бордера при фокусі
+    }
+  }
+  button{
+    position: absolute;
+    margin-top: 13px;
+    margin-right: 5px;
+    right: 0;
+    svg{
+      color: #707070;
+      font-size: 25px;
+      padding: 0;
+    }
+  }
+}

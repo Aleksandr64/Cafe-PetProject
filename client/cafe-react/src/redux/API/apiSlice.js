@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { setCredentials, logOut } from "../auth/authSlice";
+import { setCredentials, logOut } from "../slices/authSlice";
 import {
   selectCurrentAccessToken,
   selectCurrentRefreshToken,
-} from "../auth/authSlice";
+} from "../slices/authSlice";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:5179/api",
@@ -19,10 +19,7 @@ const baseQuery = fetchBaseQuery({
 
 const baseQueryWithReAuth = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
-  console.log(result);
-  if (result?.error?.status === 401) {
-    console.log("sending refresh token");
-    // send refresh token to get new access token
+  if (result?.error?.status === 401 && api.getState().auth.accessToken != null) {
     const refreshData = await getNewAccessToken(api);
     if (refreshData) {
       const user = api.getState().auth.user;
@@ -32,7 +29,6 @@ const baseQueryWithReAuth = async (args, api, extraOptions) => {
       api.dispatch(logOut());
     }
   }
-
   return result;
 };
 
@@ -63,7 +59,6 @@ export const getNewAccessToken = async (api) => {
       throw new Error("Failed to get new access token");
     }
     const responseData = response.data;
-    console.log(responseData);
     return responseData;
   } catch (error) {
     console.error("Error getting new access token:", error);
